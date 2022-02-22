@@ -25,6 +25,9 @@ interface OperationsDAO {
 //    SELECT * FROM tasks
 //    INNER JOIN images as img_ ON tasks.id = img_.id
 //""")
+@Query("SELECT SUM(value) FROM operations")
+fun getBalance(): Flow<Long>
+
     @Query("SELECT * FROM moneyHolder " +
             "JOIN operations as emb_ ON moneyHolder.moneyId = emb_.moneyHolderId"
     )

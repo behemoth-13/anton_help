@@ -1,7 +1,9 @@
 package selitskiyapp.hometasks.financialassistant.presentation.view.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -52,6 +54,12 @@ class MoneyHolderFragment : Fragment(R.layout.fragment_money_holder) {
         lifecycleScope.launchWhenResumed {
             viewModel.moneyHoldersListFlow.collect {
                 adapter.submitList(it)
+            }
+        }
+        lifecycleScope.launchWhenResumed {
+            viewModel.summ.collect {
+                Log.d("sasdfas", "summ = ${it / 100f}")
+                Toast.makeText(requireContext(), "summ = ${it / 100f}", Toast.LENGTH_SHORT).show()
             }
         }
     }

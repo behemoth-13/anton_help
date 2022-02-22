@@ -6,16 +6,20 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import selitskiyapp.hometasks.financialassistant.data.storage.MoneyHolderDao
 import selitskiyapp.hometasks.financialassistant.domain.models.MoneyHolder
 import selitskiyapp.hometasks.financialassistant.domain.repository.MoneyHoldersRepository
 import javax.inject.Inject
 
 @HiltViewModel
 class EditMoneyHolderViewModel @Inject constructor(
+    private val dao: MoneyHolderDao,
     private val moneyHoldersRepository: MoneyHoldersRepository,
 ) : ViewModel() {
     private val _moneyHoldersListFlow = MutableStateFlow<List<MoneyHolder>>(emptyList())
     val moneyHoldersListFlow: StateFlow<List<MoneyHolder>> get() = _moneyHoldersListFlow
+
+    val summ = dao.getBalance()
 
     private val _moneyHolder = MutableStateFlow(MoneyHolder(0, "0",0,0))
     val moneyHolder: StateFlow<MoneyHolder> get() = _moneyHolder

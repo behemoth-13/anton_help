@@ -3,6 +3,7 @@ package selitskiyapp.hometasks.financialassistant.presentation.recyclers.moneyho
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import selitskiyapp.hometasks.financialassistant.R
 import selitskiyapp.hometasks.financialassistant.databinding.ItemMoneyHolderBinding
 import selitskiyapp.hometasks.financialassistant.domain.models.MoneyHolder
 
@@ -29,8 +30,7 @@ class MoneyHolderViewHolder(
 
     fun bindView(item: MoneyHolder) = with(binding) {
         textViewName.text = item.name
-        textViewBalance.text = item.balance.toString()
-
+        textViewBalance.text = root.context.getString(R.string.msg_currency_byn_amount_format, item.balance / 100f)
         itemMoneyHolder.setOnClickListener {
             item.id.let { it1 -> itemClickListenerMoneyHolder.onItemClickListener(it1) }
         }

@@ -6,4 +6,5 @@
     <string name="todo">TODO</string>
     <string name="typeCash">Карта</string>
     <string name="typeNonCash">Наличные</string>
+    <string name="msg_currency_byn_amount_format">%1$.2f</string>
 </resources>
